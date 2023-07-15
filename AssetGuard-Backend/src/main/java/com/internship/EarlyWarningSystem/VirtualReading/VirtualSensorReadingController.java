@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v3")
 public class VirtualSensorReadingController {
-
     @Autowired
     private VirtualSensorReadingService virtualSensorReadingService;
 
@@ -19,7 +18,6 @@ public class VirtualSensorReadingController {
 
     @GetMapping("/getReadingByName/{sensorName}")
     public List<VirtualSensorReadingDTO> getReadingSensorName(@PathVariable String sensorName){
-
         return virtualSensorReadingService.getReadingBySensorName(sensorName);
     }
 }

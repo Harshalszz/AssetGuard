@@ -32,15 +32,19 @@ private VirtualSensorRepository sensorRepository;
         return randomValue;
     }
 
-
-
-
     @Override
-    public void startVirtualSensor(VirtualSensor virtualSensor) {
+    public void startVirtualSensor(int sensorId) {
         if (scheduler == null || scheduler.isShutdown()) {
             scheduler = Executors.newScheduledThreadPool(1);
         }
         scheduler.scheduleAtFixedRate(() -> {
+            System.out.println("dcdc : "+sensorId);
+
+            System.out.println("asdlsdklkdaslksd");
+            VirtualSensor virtualSensor = sensorRepository.findById(sensorId).orElseThrow(() -> new RuntimeException("Virtual sensor not found"));
+            System.out.println( "sadh:" + sensorId);
+            System.out.println("sagdjgfj   " + virtualSensor);
+
             double value = generateRandomValues(virtualSensor.getMinValue(), virtualSensor.getMaxValue());
            // VirtualSensorReading reading = new VirtualSensorReading(virtualSensor.getVirtualSensorName(), value, new Timestamp(System.currentTimeMillis()));
             VirtualSensorReading reading = new VirtualSensorReading();
@@ -52,7 +56,7 @@ private VirtualSensorRepository sensorRepository;
             System.out.println("kjshfdfwdjfg "+reading);
 
 
-            sensorRepository.save(virtualSensor);
+            //sensorRepository.save(virtualSensor);
             System.out.println(virtualSensor.getVirtualSensorName()+ ": " + reading.getValue());
             readingRepository.save(reading);
 
@@ -65,6 +69,7 @@ private VirtualSensorRepository sensorRepository;
         List<VirtualSensorDTO> virtualSensorDTOS = new ArrayList<>();
         for (VirtualSensor virtualSensor : virtualSensors){
             VirtualSensorDTO virtualSensorDTO = new VirtualSensorDTO(
+                    virtualSensor.getVirtualSensorID(),
                     virtualSensor.getVirtualSensorName(),
                     virtualSensor.getThreshold(),
                     virtualSensor.getMinValue(),

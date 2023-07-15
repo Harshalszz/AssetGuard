@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 public class VirtualSensor {
     @Id
-    @Column(name = "id")
+    @Column(name = "virtualSensorID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int virtualSensorID;
 

@@ -11,7 +11,7 @@ public interface VirtualSensorService{
 
     public double generateRandomValues(int minValue, int maxValue);
 
-    public void startVirtualSensor(VirtualSensor virtualSensor);
+    public void startVirtualSensor(int sensorId);
 
     public void stopReading();
     public List<VirtualSensorDTO> getAllSensorData();

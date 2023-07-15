@@ -28,6 +28,6 @@ public class VirtualSensorReading {
     private Timestamp timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "virtualSensorID", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "virtualSensorID", referencedColumnName = "virtualSensorID", nullable = false)
     private VirtualSensor virtualSensor;
 }

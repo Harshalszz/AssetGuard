@@ -35,10 +35,19 @@ public class VirtualSensorController {
 //    }
     @PostMapping("/addvirtualSensor")
     public ResponseEntity<String> startReading(@RequestBody VirtualSensor virtualSensor) {
-        System.out.println("heating");
+
         virtualSensorRepository.save(virtualSensor);
-        virtualSensorService.startVirtualSensor(virtualSensor);
+
         return ResponseEntity.ok("Reading started for sensor type " + virtualSensor.getVirtualSensorName());
+    }
+
+    @PostMapping("/startVirtualSensor/{sensorId}")
+    public ResponseEntity<String> startVirtualSensor(@PathVariable int sensorId){
+        System.out.println(sensorId);
+
+        virtualSensorService.startVirtualSensor(sensorId);
+
+        return ResponseEntity.ok(sensorId + " started !!!!!!!!" );
     }
 
     @PostMapping("/shutdown")

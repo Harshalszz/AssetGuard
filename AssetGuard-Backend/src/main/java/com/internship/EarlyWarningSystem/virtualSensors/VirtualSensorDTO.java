@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class VirtualSensorDTO {
+    private int virtualSensorID;
     private String virtualSensorName;
 
     private int threshold;
